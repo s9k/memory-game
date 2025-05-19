@@ -1,6 +1,8 @@
 :root {
   --background: #030328;
   --foreground: #ffffff;
+  --color-accent-1: #3fc4ff;
+  --color-accent-2: #e53afe;
 }
 
 body {

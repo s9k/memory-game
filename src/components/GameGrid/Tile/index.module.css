@@ -1,0 +1,44 @@
+.root {
+  border-radius: 1rem;
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid var(--color-accent-1);
+  color: var(--color-accent-1);
+  cursor: pointer;
+  font-size: 4rem;
+  transform-style: preserve-3d;
+  transition: transform .4s, outline .1s;
+  background: transparent;
+}
+
+.root:focus-visible {
+  outline: 3px solid var(--color-accent-1);
+}
+
+.matched {
+  border-color: var(--color-accent-2);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.side {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(-180deg);
+}
+
+.back {
+  transform: rotateY(0);
+}

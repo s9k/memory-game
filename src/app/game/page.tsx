@@ -1,3 +1,11 @@
+import { GameGrid } from "@/components/GameGrid";
+
+const PAIRS = 6;
+
 export default function GamePage() {
-  return <>TODO GAME PAGE</>;
+  return (
+    <>
+      <GameGrid pairs={PAIRS} />
+    </>
+  );
 }
