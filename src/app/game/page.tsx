@@ -1,26 +1,17 @@
 "use client";
 
-import { GameGrid } from "@/components/GameGrid";
+import { GameBoard, GameToolbar } from "@/domains/game/widgets";
 import { withPlayerLoggedIn } from "@/domains/player/hocs";
-import { usePlayerContext } from "@/domains/player/hooks";
+import styles from "./page.module.css";
 
 const PAIRS = 6;
 
 function GamePage() {
-  const { player, logOut } = usePlayerContext();
-
   return (
-    <>
-      <div>
-        {player?.name}
-        <br />
-        <button type="button" onClick={logOut}>
-          Log out
-        </button>
-      </div>
-
-      <GameGrid pairs={PAIRS} />
-    </>
+    <div className={styles.root}>
+      <GameToolbar />
+      <GameBoard pairs={PAIRS} />
+    </div>
   );
 }
 

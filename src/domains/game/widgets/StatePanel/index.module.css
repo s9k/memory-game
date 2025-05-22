@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-radius: 1rem;
+  background-color: var(--color-background-hard);
+  padding: 0.5rem 1rem;
+  width: 16rem;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--color-accent-2);
+  stroke-width: 1px;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+}
+
+.caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

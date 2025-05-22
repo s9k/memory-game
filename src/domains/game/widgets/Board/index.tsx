@@ -59,4 +59,4 @@ function Content({ pairs }: Props) {
   );
 }
 
-export const GameGrid = dynamic(async () => Content, { ssr: false });
+export const GameBoard = dynamic(async () => Content, { ssr: false });
