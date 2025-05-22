@@ -8,6 +8,7 @@ import "./globals.css";
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk-sans",
   subsets: ["latin"],
+  weight: ["300"],
 });
 
 export const metadata: Metadata = {

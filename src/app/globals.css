@@ -1,16 +1,41 @@
 :root {
-  --background: #030328;
-  --foreground: #ffffff;
+  --color-background-hard: #0e0d13;
+  --color-background-soft: #1d1c24;
+  --color-text-main: #ffffff;
   --color-accent-1: #3fc4ff;
   --color-accent-2: #e53afe;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--color-text-main);
   font-family: var(--font-space-grotesk-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--color-background-soft);
+  background-image:
+    radial-gradient(circle at 25% 25%,
+      color-mix(in srgb,
+        var(--color-accent-2) 50%,
+        var(--color-background-soft)) 0%,
+      transparent 15%),
+    radial-gradient(circle at 32% 30%,
+      color-mix(in srgb,
+        var(--color-accent-2) 50%,
+        var(--color-background-soft)) 0%,
+      transparent 15%),
+    radial-gradient(circle at 75% 75%,
+      color-mix(in srgb,
+        var(--color-accent-1) 45%,
+        var(--color-background-soft)) 0%,
+      transparent 15%),
+    radial-gradient(circle at 72% 68%,
+      color-mix(in srgb,
+        var(--color-accent-1) 45%,
+        var(--color-background-soft)) 2%,
+      transparent 14%);
+  background-repeat: no-repeat;
+  min-height: 100svh;
 }
 
 * {

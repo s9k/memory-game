@@ -1,5 +1,16 @@
 .root {
   text-transform: uppercase;
   text-align: center;
-  margin: 1rem 0;
+  padding: 1rem 0;
+  width: min-content;
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+@supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
+  .root {
+    background: linear-gradient(90deg, var(--color-accent-2) 0%, var(--color-accent-1) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
