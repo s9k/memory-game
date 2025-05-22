@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { PageHeader } from "@/components/PageHeader";
-import "./globals.css";
 import { PageContainer } from "@/components/PageContainer";
+import { PlayerProvider } from "@/domains/player/widgets";
+import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk-sans",
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.variable}`}>
-        <PageHeader />
-        <PageContainer>{children}</PageContainer>
+        <PlayerProvider>
+          <PageHeader />
+          <PageContainer>{children}</PageContainer>
+        </PlayerProvider>
       </body>
     </html>
   );
