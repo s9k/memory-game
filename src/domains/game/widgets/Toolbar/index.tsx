@@ -1,12 +1,9 @@
-import { GameActions } from "../Actions";
-import { GameStatePanel } from "../StatePanel";
 import styles from "./index.module.css";
 
-export function GameToolbar() {
-  return (
-    <div className={styles.root}>
-      <GameStatePanel />
-      <GameActions />
-    </div>
-  );
+type Props = {
+  children: React.ReactNode;
+};
+
+export function GameToolbar({ children }: Props) {
+  return <div className={styles.root}>{children}</div>;
 }

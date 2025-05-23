@@ -1,32 +1,28 @@
 "use client";
 
+import { useGameStore } from "@/domains/game/hooks";
 import { Tile } from "./Tile";
 import { useTileDataList } from "./useTileDataList";
 import styles from "./index.module.css";
-import { useState } from "react";
-import dynamic from "next/dynamic";
 
-type Props = {
-  pairs: number;
-};
-
-function Content({ pairs }: Props) {
-  const list = useTileDataList(pairs);
-  const [checkedIds, setCheckedIds] = useState<Set<number>>(new Set());
-  const [matchedIds, setMatchedIds] = useState<Set<number>>(new Set());
+export function GameBoard() {
+  const list = useTileDataList();
+  const checkedIds = useGameStore((state) => state.checked);
+  const checkTile = useGameStore((state) => state.checkTile);
+  const matchedIds = useGameStore((state) => state.matched);
+  const matchTiles = useGameStore((state) => state.matchTiles);
+  const addMove = useGameStore((state) => state.addMove);
 
   const handleClickTile = (tileId: number) => {
-    setCheckedIds((current) => {
-      const updated = current.size >= 2 ? new Set<number>() : new Set(current);
-      updated.add(tileId);
-      return updated;
-    });
+    console.log("clicked tileId", tileId);
+    addMove();
+    checkTile(tileId);
 
-    if (checkedIds.size !== 1) {
+    if (checkedIds.length !== 1) {
       return;
     }
 
-    const currentCheckedTiles = [...checkedIds].map((id) => list.byId.get(id));
+    const currentCheckedTiles = checkedIds.map((id) => list.byId.get(id));
     const clickedPairId = list.byId.get(tileId)?.pairId;
     const matchedTile = currentCheckedTiles.find(
       (tile) => tile?.pairId === clickedPairId && tile?.id !== tileId
@@ -36,12 +32,7 @@ function Content({ pairs }: Props) {
       return;
     }
 
-    setMatchedIds((current) => {
-      const updated = new Set(current);
-      updated.add(tileId);
-      updated.add(matchedTile.id);
-      return updated;
-    });
+    matchTiles(tileId, matchedTile.id);
   };
 
   return (
@@ -50,13 +41,11 @@ function Content({ pairs }: Props) {
         <Tile
           key={data.id}
           {...data}
-          checked={checkedIds.has(data.id)}
-          matched={matchedIds.has(data.id)}
+          checked={checkedIds.includes(data.id)}
+          matched={matchedIds.includes(data.id)}
           onFlip={handleClickTile}
         />
       ))}
     </div>
   );
 }
-
-export const GameBoard = dynamic(async () => Content, { ssr: false });

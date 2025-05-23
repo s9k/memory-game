@@ -1,17 +1,21 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { usePlayerContext } from "@/domains/player/hooks";
+import { usePlayerStore } from "@/domains/player/hooks";
 import styles from "./index.module.css";
 
 export function PlayerLoginForm() {
-  const { player, logIn } = usePlayerContext();
+  const { hydrated, playerName, logIn } = usePlayerStore((state) => state);
 
   const submitAction = async (formData: FormData) => {
     const name = formData.get("name") as string;
     logIn(name);
     redirect("/game");
   };
+
+  if (!hydrated) {
+    return null;
+  }
 
   return (
     <form className={styles.root} action={submitAction}>
@@ -21,7 +25,8 @@ export function PlayerLoginForm() {
         className={styles.nameInput}
         name="name"
         type="text"
-        defaultValue={player ? player.name : "Player"}
+        defaultValue={playerName ?? "Player"}
+        autoFocus
         required
       />
       <button className={styles.button} type="submit">

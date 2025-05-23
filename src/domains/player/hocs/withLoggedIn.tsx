@@ -1,22 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePlayerContext } from "../hooks/useContext";
+import { usePlayerStore } from "../hooks";
 import { redirect } from "next/navigation";
 
 export function withPlayerLoggedIn<Props extends Record<string, unknown>>(
   Component: React.ComponentType<Props>
 ) {
   return function ProtectedComponent(props: Props) {
-    const { player, pending } = usePlayerContext();
+    const playerName = usePlayerStore((state) => state.playerName);
+    const hydrated = usePlayerStore((state) => state.hydrated);
 
     useEffect(() => {
-      if (!pending && !player) {
+      if (hydrated && !playerName) {
         redirect("/");
       }
-    }, [pending, player]);
+    }, [playerName, hydrated]);
 
-    if (pending) {
+    if (!playerName && !hydrated) {
       return null;
     }
 

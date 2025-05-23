@@ -1,18 +1,9 @@
 import { useMemo } from "react";
 import { TileData } from "./Tile";
+import { useGameStore } from "../../hooks";
 
-export function useTileDataList(pairs: number) {
-  const data = useMemo(
-    () =>
-      Array.from({ length: pairs * 2 }, (_, index) => ({
-        id: index,
-        pairId: Math.floor(index / 2),
-        url: undefined,
-      })),
-    [pairs]
-  );
-
-  const shuffled = useMemo(() => data.sort(() => Math.random() - 0.5), [data]);
+export function useTileDataList() {
+  const shuffled = useGameStore((state) => state.tiles);
 
   const byId = useMemo(() => {
     return shuffled.reduce<Map<number, TileData>>(

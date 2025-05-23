@@ -1,21 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useGameStore } from "./useStore";
+import { useGameOver } from "./useOver";
 
 export function useGameTime() {
-  const [time, setTime] = useState(0);
+  const gameOver = useGameOver();
+  const gameId = useGameStore((state) => state.gameId);
+  const secondsPassed = useGameStore((state) => state.timePassed);
+  const setSecondsPassed = useGameStore((state) => state.setTimePassed);
+  const msPassedRef = useRef(secondsPassed);
 
   useEffect(() => {
-    const startTime = performance.now();
+    msPassedRef.current = secondsPassed * 1_000;
+  }, [gameId]);
+
+  useEffect(() => {
+    if (gameOver) {
+      return;
+    }
+
+    let lastTime = performance.now();
     let id = requestAnimationFrame(tick);
 
-    function tick(time: DOMHighResTimeStamp) {
-      const secondsPast = Math.floor((time - startTime) / 1_000);
-      setTime(secondsPast);
+    function tick() {
+      const now = performance.now();
+      const delta = now - lastTime;
+      msPassedRef.current += delta;
 
+      const secondsPast = Math.floor(msPassedRef.current / 1_000);
+      setSecondsPassed(secondsPast);
+
+      lastTime = now;
       id = requestAnimationFrame(tick);
     }
 
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  return time;
+    return () => {
+      cancelAnimationFrame(id);
+    };
+  }, [gameOver]);
 }

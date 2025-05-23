@@ -37,6 +37,7 @@ export function Tile({ id, pairId, checked, matched, onFlip }: Props) {
       <div className={`${styles.front} ${styles.side}`}>{pairId}</div>
       <div className={`${styles.back} ${styles.side}`}>
         <Shapes size="3rem" fill="currentColor" />
+        {pairId}
       </div>
     </button>
   );
