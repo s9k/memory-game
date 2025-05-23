@@ -1,24 +1,27 @@
 .root {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 0.25rem;
   border-radius: 1rem;
   background-color: var(--color-background-hard);
   padding: 0.5rem 1rem;
   width: 16rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.user {
+  grid-column: 1 / span 2;
+}
+
+.item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .icon {
   flex-shrink: 0;
   color: var(--color-accent-2);
   stroke-width: 1px;
-}
-
-.row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-
 }
 
 .caption {

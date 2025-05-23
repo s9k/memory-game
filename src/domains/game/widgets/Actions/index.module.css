@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+}
+
+.root> :not(:first-child) {
+  --button-border-bottom-left-radius: 0;
+  --button-border-top-left-radius: 0;
+  --button-margin-left-collapsed: 1;
+}
+
+.root> :not(:last-child) {
+  --button-border-bottom-right-radius: 0;
+  --button-border-top-right-radius: 0;
+}
