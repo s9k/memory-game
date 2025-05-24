@@ -12,6 +12,7 @@ export function GameBoard() {
   const matchedIds = useGameStore((state) => state.matched);
   const matchTiles = useGameStore((state) => state.matchTiles);
   const addMove = useGameStore((state) => state.addMove);
+  const cheatMode = useGameStore((state) => state.cheatMode);
 
   const handleClickTile = (tileId: number) => {
     addMove();
@@ -43,6 +44,7 @@ export function GameBoard() {
           checked={checkedIds.includes(data.id)}
           matched={matchedIds.includes(data.id)}
           onFlip={handleClickTile}
+          cheatMode={cheatMode}
         />
       ))}
     </div>

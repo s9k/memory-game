@@ -29,6 +29,9 @@ type GameState = HydrateStoreSlice & {
 
   matched: GameTileId[];
   matchTiles: (tile1Id: GameTileId, tile2Id: GameTileId) => void;
+
+  cheatMode: boolean;
+  toggleCheatMode: () => void;
 };
 
 const PAIRS = 6;
@@ -73,6 +76,11 @@ export const useGameStore = create<GameState>()(
             matched: [],
           }));
         },
+
+        cheatMode: false,
+        toggleCheatMode: () =>
+          set((state) => ({ cheatMode: !state.cheatMode })),
+
         ...createHydrateStoreSlice(set, get, api),
       };
     },

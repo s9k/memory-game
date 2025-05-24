@@ -11,6 +11,20 @@
   background: transparent;
 }
 
+.icon {
+  width: 3rem;
+  height: 3rem;
+  fill: currentColor;
+}
+
+.hint {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
 .root:focus-visible {
   outline: 3px solid var(--color-accent-1);
 }
