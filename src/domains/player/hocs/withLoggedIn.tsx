@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { createElement, useEffect } from "react";
 import { usePlayerStore } from "../hooks";
 import { redirect } from "next/navigation";
 
-export function withPlayerLoggedIn<Props extends Record<string, unknown>>(
-  Component: React.ComponentType<Props>
-) {
-  return function ProtectedComponent(props: Props) {
+export function withPlayerLoggedIn<
+  P extends Record<string, unknown>,
+  C extends React.ComponentType<P>
+>(Component: C): C {
+  function ProtectedComponent(props: P) {
     const playerName = usePlayerStore((state) => state.playerName);
     const hydrated = usePlayerStore((state) => state.hydrated);
 
@@ -21,6 +22,8 @@ export function withPlayerLoggedIn<Props extends Record<string, unknown>>(
       return null;
     }
 
-    return <Component {...props} />;
-  };
+    return createElement(Component, props);
+  }
+
+  return ProtectedComponent as C;
 }
