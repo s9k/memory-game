@@ -23,23 +23,13 @@ export function Tile({
   onFlip,
   cheatMode,
 }: Props) {
-  const handleClick = () => {
-    onFlip?.(id);
-  };
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" || event.key === " ") {
-      onFlip?.(id);
-    }
-  };
-
   return (
     <button
       className={cn(styles.root, {
         [styles.flipped]: checked || matched,
         [styles.matched]: matched,
       })}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onClick={() => onFlip?.(id)}
       disabled={matched || checked}
     >
       <div className={cn(styles.front, styles.side)}>{pairId}</div>

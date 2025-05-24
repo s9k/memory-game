@@ -12,8 +12,8 @@ import { withPlayerLoggedIn } from "@/domains/player/hocs";
 import { usePlayerStore } from "@/domains/player/hooks";
 import { useGameStore } from "@/domains/game/hooks";
 import { GameVictoryModal } from "@/domains/game/widgets/VictoryModal";
-import styles from "./page.module.css";
 import { useGameKeyboard } from "@/domains/game/hooks/useKeyboard";
+import styles from "./page.module.css";
 
 function GamePage() {
   const logOut = usePlayerStore((state) => state.logOut);

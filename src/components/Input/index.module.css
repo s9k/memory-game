@@ -1,0 +1,17 @@
+.root {
+  display: block;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent-1) 50%, transparent);
+  background: transparent;
+  line-height: 1rem;
+}
+
+.root:hover,
+.root:focus-visible {
+  border-color: var(--color-accent-1);
+}
+
+.root:focus-visible {
+  outline: 1px solid var(--color-accent-1);
+}

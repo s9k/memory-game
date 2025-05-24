@@ -1,7 +1,9 @@
 "use client";
 
+import { Coffee } from "lucide-react";
 import { redirect } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
+import { Button, Input } from "@/components";
 import styles from "./index.module.css";
 
 export function PlayerLoginForm() {
@@ -19,19 +21,23 @@ export function PlayerLoginForm() {
 
   return (
     <form className={styles.root} action={submitAction}>
-      <label htmlFor="name">Enter your name</label>
-      <input
+      <label htmlFor="name" className={styles.label}>
+        Enter your name
+      </label>
+      <Input
         id="name"
-        className={styles.nameInput}
         name="name"
         type="text"
-        defaultValue={playerName ?? "Player"}
+        defaultValue={playerName ?? undefined}
+        placeholder="Player"
         autoFocus
         required
       />
-      <button className={styles.button} type="submit">
-        Start the game
-      </button>
+      <Button type="submit">
+        <span className={styles.buttonInner}>
+          Start the game <Coffee />
+        </span>
+      </Button>
     </form>
   );
 }
