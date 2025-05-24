@@ -3,3 +3,4 @@ export * from "./ActionButton";
 export * from "./Board";
 export * from "./StatePanel";
 export * from "./Toolbar";
+export * from "./VictoryModal";

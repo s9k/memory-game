@@ -31,7 +31,7 @@ type GameState = HydrateStoreSlice & {
   matchTiles: (tile1Id: GameTileId, tile2Id: GameTileId) => void;
 };
 
-const PAIRS = 2;
+const PAIRS = 6;
 
 export const useGameStore = create<GameState>()(
   persist(

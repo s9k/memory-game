@@ -9,10 +9,10 @@ import {
   GameToolbar,
 } from "@/domains/game/widgets";
 import { withPlayerLoggedIn } from "@/domains/player/hocs";
-import styles from "./page.module.css";
 import { usePlayerStore } from "@/domains/player/hooks";
 import { useGameStore, useGameTime } from "@/domains/game/hooks";
 import { GameVictoryModal } from "@/domains/game/widgets/VictoryModal";
+import styles from "./page.module.css";
 
 function GamePage() {
   const logOut = usePlayerStore((state) => state.logOut);
@@ -45,9 +45,11 @@ function GamePage() {
         </GameActions>
       </GameToolbar>
 
-      <GameBoard />
+      <div className={styles.board}>
+        <GameBoard />
 
-      <GameVictoryModal />
+        <GameVictoryModal />
+      </div>
     </div>
   );
 }

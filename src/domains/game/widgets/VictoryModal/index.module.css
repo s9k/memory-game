@@ -2,4 +2,38 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  border-radius: 1rem;
+  border: 0;
+  background-color: color-mix(in srgb, var(--color-background-hard) 50%, transparent);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.visible {
+  display: flex;
+}
+
+.icon {
+  color: var(--color-accent-2);
+  width: 3rem;
+  height: 3rem;
+  stroke-width: 1px;
+}
+
+.highlight {
+  background: unset;
+  color: var(--color-accent-2);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
 }

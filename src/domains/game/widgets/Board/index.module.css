@@ -1,7 +1,5 @@
 .root {
   display: grid;
-  width: min-content;
-  margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }

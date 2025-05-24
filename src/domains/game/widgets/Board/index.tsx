@@ -14,7 +14,6 @@ export function GameBoard() {
   const addMove = useGameStore((state) => state.addMove);
 
   const handleClickTile = (tileId: number) => {
-    console.log("clicked tileId", tileId);
     addMove();
     checkTile(tileId);
 
