@@ -9,7 +9,10 @@
 
 .content {
   padding: 1rem;
-  min-width: 30rem;
+  min-width: 21rem;
+  width: 50vw;
+  max-width: 30rem;
+  max-height: 90svh;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

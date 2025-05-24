@@ -3,3 +3,10 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
+@media (width < 40rem) {
+  .root {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+}

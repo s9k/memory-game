@@ -38,3 +38,9 @@
   font-size: 0.75rem;
   white-space: nowrap;
 }
+
+@media (width < 40rem) {
+  .root {
+    flex-grow: 1;
+  }
+}

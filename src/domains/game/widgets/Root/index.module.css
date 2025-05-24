@@ -6,6 +6,12 @@
 
 .board {
   position: relative;
-  width: min-content;
   margin: 0 auto;
+  width: 100%;
+}
+
+@media (width < 40rem) {
+  .root {
+    gap: 0.5rem;
+  }
 }

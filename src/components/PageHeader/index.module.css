@@ -14,3 +14,9 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+@media (width < 40rem) {
+  .root {
+    padding: 0.25rem;
+  }
+}

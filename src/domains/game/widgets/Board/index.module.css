@@ -1,5 +1,14 @@
 .root {
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+  max-width: 48rem;
+  display: grid;
+  margin: 0 auto;
+}
+
+@media (width < 40rem) {
+  .root {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
 }
