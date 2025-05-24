@@ -10,7 +10,7 @@ import {
 } from "@/domains/game/widgets";
 import { withPlayerLoggedIn } from "@/domains/player/hocs";
 import { usePlayerStore } from "@/domains/player/hooks";
-import { useGameStore, useGameTime } from "@/domains/game/hooks";
+import { useGameStore } from "@/domains/game/hooks";
 import { GameVictoryModal } from "@/domains/game/widgets/VictoryModal";
 import styles from "./page.module.css";
 import { useGameKeyboard } from "@/domains/game/hooks/useKeyboard";
@@ -19,7 +19,6 @@ function GamePage() {
   const logOut = usePlayerStore((state) => state.logOut);
   const startNewGame = useGameStore((state) => state.startNewGame);
 
-  useGameTime();
   useGameKeyboard();
 
   const handleLogOut = () => {
