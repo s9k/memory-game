@@ -6,8 +6,12 @@
   --color-accent-2: #e53afe;
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
-  color: var(--color-text-main);
+  color: var(--color-main);
   font-family: var(--font-space-grotesk-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -47,10 +51,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
