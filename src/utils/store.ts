@@ -1,4 +1,5 @@
 import { StateCreator } from "zustand";
+import { PersistOptions } from "zustand/middleware";
 
 export type HydrateStoreSlice = {
   hydrated: boolean;
@@ -12,7 +13,22 @@ export const createHydrateStoreSlice: StateCreator<HydrateStoreSlice> = (
   setHydrated: () => set({ hydrated: true }),
 });
 
-export const onRehydrateStorage =
+const onRehydrateStorage =
   <State extends HydrateStoreSlice>(state: State) =>
   () =>
     state.setHydrated(true);
+
+const partialize = <State extends HydrateStoreSlice>({
+  hydrated, // eslint-disable-line @typescript-eslint/no-unused-vars
+  ...state
+}: State): Omit<State, "hydrated"> => state;
+
+export const getHydratePersistOptions = <
+  State extends HydrateStoreSlice
+>(): Pick<
+  PersistOptions<State, Omit<State, "hydrated">>,
+  "onRehydrateStorage" | "partialize"
+> => ({
+  onRehydrateStorage,
+  partialize,
+});

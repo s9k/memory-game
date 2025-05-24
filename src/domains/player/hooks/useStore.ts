@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import {
   HydrateStoreSlice,
   createHydrateStoreSlice,
-  onRehydrateStorage,
+  getHydratePersistOptions,
 } from "@/utils/store";
 
 type PlayerState = HydrateStoreSlice & {
@@ -22,7 +22,7 @@ export const usePlayerStore = create<PlayerState>()(
     }),
     {
       name: "player",
-      onRehydrateStorage,
+      ...getHydratePersistOptions(),
     }
   )
 );

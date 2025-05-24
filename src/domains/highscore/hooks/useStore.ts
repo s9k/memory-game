@@ -2,8 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import {
   createHydrateStoreSlice,
+  getHydratePersistOptions,
   HydrateStoreSlice,
-  onRehydrateStorage,
 } from "@/utils/store";
 
 type HighscoreItem = {
@@ -48,7 +48,7 @@ export const useHighscoreStore = create<HighscoreState>()(
     },
     {
       name: "highscore",
-      onRehydrateStorage,
+      ...getHydratePersistOptions(),
     }
   )
 );

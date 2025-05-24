@@ -2,8 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import {
   createHydrateStoreSlice,
+  getHydratePersistOptions,
   HydrateStoreSlice,
-  onRehydrateStorage,
 } from "@/utils/store";
 import { GameTile } from "@/domains/game/model";
 import { generateGameTiles } from "@/domains/game/utils";
@@ -93,7 +93,7 @@ export const useGameStore = create<GameState>()(
     },
     {
       name: "game",
-      onRehydrateStorage,
+      ...getHydratePersistOptions(),
     }
   )
 );
