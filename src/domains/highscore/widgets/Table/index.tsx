@@ -16,30 +16,34 @@ export function HighscoreTable() {
 
   return (
     <table className={styles.root}>
-      <tbody>
-        <tr className={styles.header}>
-          <th className={cn(styles.cell, styles.place)}>#</th>
-          <th className={cn(styles.cell, styles.playerName)}>Name</th>
-          <th className={cn(styles.cell, styles.movesCount)}>Moves</th>
-          <th className={cn(styles.cell, styles.timePassed)}>Time</th>
+      <thead className={styles.header}>
+        <tr>
+          <th className={cn(styles.headCell, styles.place)}>#</th>
+          <th className={cn(styles.headCell, styles.playerName)}>Name</th>
+          <th className={cn(styles.headCell, styles.movesCount)}>Moves</th>
+          <th className={cn(styles.headCell, styles.timePassed)}>Time</th>
         </tr>
+      </thead>
+      <tbody>
         {list.map(({ playerName, movesCount, timePassed, id }, index) => (
           <tr
             key={index}
-            className={cn({
+            className={cn(styles.row, {
               [styles.highlighted]: gameId === id,
             })}
           >
-            <td className={cn(styles.cell, styles.place)}>{index + 1}</td>
+            <td className={cn(styles.bodyCell, styles.place)}>{index + 1}</td>
             <td
-              className={cn(styles.cell, styles.playerName, {
+              className={cn(styles.bodyCell, styles.playerName, {
                 [styles.currentPlayer]: currentPlayerName === playerName,
               })}
             >
               {playerName}
             </td>
-            <td className={cn(styles.cell, styles.movesCount)}>{movesCount}</td>
-            <td className={cn(styles.cell, styles.timePassed)}>
+            <td className={cn(styles.bodyCell, styles.movesCount)}>
+              {movesCount}
+            </td>
+            <td className={cn(styles.bodyCell, styles.timePassed)}>
               {formatDuration(timePassed)}
             </td>
           </tr>

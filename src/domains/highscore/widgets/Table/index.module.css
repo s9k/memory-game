@@ -1,6 +1,7 @@
 .root {
   width: 100%;
   border-collapse: collapse;
+  position: relative;
 }
 
 .empty {
@@ -12,14 +13,26 @@
   min-height: 10rem;
 }
 
-.cell {
-  border-bottom: 1px solid #28272f;
-  padding: 0.25rem 0.25rem;
-  opacity: 0.75;
-}
-
 .header {
   background: var(--color-background-hard);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  outline: 1px solid var(--color-background-hard);
+}
+
+.bodyCell,
+.headCell {
+  padding: 0.25rem 0.25rem;
+}
+
+.bodyCell {
+  opacity: 0.75;
+  border-bottom: 1px solid #28272f;
+}
+
+.row:last-child .bodyCell {
+  border-bottom: none;
 }
 
 .place,
@@ -33,9 +46,7 @@
 
 .playerName {
   text-align: left;
-  max-width: 19rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 .currentPlayer {
@@ -51,11 +62,12 @@
   color: var(--color-accent-1);
 }
 
-.cell+.cell {
+.bodyCell+.bodyCell,
+.headCell+.headCell {
   padding-left: 0.75rem;
 }
 
-.highlighted .cell {
+.highlighted .bodyCell {
   opacity: 1;
   font-weight: bold;
 }

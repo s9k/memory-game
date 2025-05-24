@@ -5,19 +5,16 @@
   background-color: var(--color-background-soft);
   border: 0;
   border-radius: 1rem;
+  width: calc(100% - 2rem);
+  min-width: 21rem;
+  max-width: 30rem;
 }
 
 .content {
   padding: 1rem;
-  min-width: 21rem;
-  width: 50vw;
-  max-width: 30rem;
-  max-height: 90svh;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 90svh;
-  overflow: auto;
 }
 
 .root:focus-visible {
@@ -30,4 +27,34 @@
 
 .title {
   text-align: center;
+  flex-grow: 1;
+}
+
+.body {
+  max-height: 65svh;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  background: none;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.close:focus-visible,
+.close:hover {
+  opacity: 1;
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--color-main);
+  border-radius: 0.25rem;
 }

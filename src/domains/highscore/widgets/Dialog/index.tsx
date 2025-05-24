@@ -1,5 +1,6 @@
 "use client";
 
+import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useClose } from "./useClose";
 import { HighscoreTable } from "../Table";
@@ -20,10 +21,20 @@ export function HighscoreDialog({ onClose }: Props) {
   return (
     <dialog ref={dialogRef} className={styles.root}>
       <section className={styles.content}>
-        <header>
+        <header className={styles.header}>
           <h2 className={styles.title}>Fastest memorizers</h2>
+          <button
+            type="button"
+            className={styles.close}
+            onClick={() => dialogRef.current?.close()}
+            aria-label="Close dialog"
+          >
+            <X />
+          </button>
         </header>
-        <HighscoreTable />
+        <div className={styles.body}>
+          <HighscoreTable />
+        </div>
       </section>
     </dialog>
   );
