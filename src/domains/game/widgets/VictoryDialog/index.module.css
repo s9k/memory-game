@@ -17,6 +17,10 @@
   gap: 0.25rem;
 }
 
+.root:focus-visible {
+  outline: none;
+}
+
 .visible {
   display: flex;
 }

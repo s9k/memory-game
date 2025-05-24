@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useOutsideClick } from "./useOutsideClick";
+import { useClose } from "./useClose";
 import { HighscoreTable } from "../Table";
 import styles from "./index.module.css";
 
@@ -15,7 +15,7 @@ export function HighscoreDialog({ onClose }: Props) {
   useEffect(() => {
     dialogRef.current?.showModal();
   }, []);
-  useOutsideClick(dialogRef, onClose);
+  useClose(dialogRef, onClose);
 
   return (
     <dialog ref={dialogRef} className={styles.root}>
