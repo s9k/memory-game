@@ -1,15 +1,16 @@
 import { Medal, RefreshCcw, Trophy } from "lucide-react";
+import { redirect } from "next/navigation";
 import cn from "classnames";
 import { useGameOver, useGameStore } from "@/domains/game/hooks";
 import { formatDuration } from "@/utils/duration";
 import { Button } from "./Button";
 import styles from "./index.module.css";
 
-export function GameVictoryModal() {
+export function GameVictoryDialog() {
   const isGameOver = useGameOver();
   const secondsPassed = useGameStore((state) => state.timePassed);
   const movesCount = useGameStore((state) => state.movesCount);
-  const startNewGame = useGameStore((state) => state.startNewGame);
+  const resetGame = useGameStore((state) => state.resetGame);
 
   return (
     <dialog
@@ -27,12 +28,12 @@ export function GameVictoryModal() {
         with <mark className={styles.highlight}>{movesCount}</mark> moves.
       </p>
       <div className={styles.actions}>
+        <Button icon={<RefreshCcw />} label="Play again" onClick={resetGame} />
         <Button
-          icon={<RefreshCcw />}
-          label="Play again"
-          onClick={startNewGame}
+          icon={<Medal />}
+          label="Scoreboard"
+          onClick={() => redirect("/game/scores")}
         />
-        <Button icon={<Medal />} label="Scoreboard" />
       </div>
     </dialog>
   );

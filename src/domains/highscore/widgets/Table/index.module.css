@@ -1,0 +1,61 @@
+.root {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.empty {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  min-height: 10rem;
+}
+
+.cell {
+  border-bottom: 1px solid #28272f;
+  padding: 0.25rem 0.25rem;
+  opacity: 0.75;
+}
+
+.header {
+  background: var(--color-background-hard);
+}
+
+.place,
+.movesCount,
+.timePassed {
+  /* shrink cells to the min content */
+  width: 1px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.playerName {
+  text-align: left;
+  max-width: 19rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.currentPlayer {
+  opacity: 1;
+}
+
+.place {
+  color: var(--color-accent-2);
+  text-align: right;
+}
+
+.timePassed {
+  color: var(--color-accent-1);
+}
+
+.cell+.cell {
+  padding-left: 0.75rem;
+}
+
+.highlighted .cell {
+  opacity: 1;
+  font-weight: bold;
+}

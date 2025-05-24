@@ -2,7 +2,11 @@ import { useEffect, useRef } from "react";
 import { useGameStore } from "./useStore";
 import { useGameOver } from "./useOver";
 
-export function useGameTime() {
+type Props = {
+  paused?: boolean;
+};
+
+export function useGameTime({ paused }: Props) {
   const gameOver = useGameOver();
   const gameId = useGameStore((state) => state.gameId);
   const secondsPassed = useGameStore((state) => state.timePassed);
@@ -14,7 +18,7 @@ export function useGameTime() {
   }, [gameId]);
 
   useEffect(() => {
-    if (gameOver) {
+    if (gameOver || paused) {
       return;
     }
 
@@ -36,5 +40,5 @@ export function useGameTime() {
     return () => {
       cancelAnimationFrame(id);
     };
-  }, [gameOver]);
+  }, [gameOver, paused]);
 }

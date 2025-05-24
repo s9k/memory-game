@@ -11,8 +11,8 @@ import { generateGameTiles } from "@/domains/game/utils";
 type GameTileId = number;
 
 type GameState = HydrateStoreSlice & {
-  gameId: number;
-  startNewGame: () => void;
+  gameId: string;
+  resetGame: () => void;
 
   /** Time passed in seconds since the game started. */
   timePassed: number;
@@ -28,7 +28,7 @@ type GameState = HydrateStoreSlice & {
   checkTile: (tileId: GameTileId) => void;
 
   matched: GameTileId[];
-  matchTiles: (tile1Id: GameTileId, tile2Id: GameTileId) => void;
+  matchTiles: (tile1Id: GameTileId, tile2Id: GameTileId) => boolean;
 
   cheatMode: boolean;
   toggleCheatMode: () => void;
@@ -62,19 +62,26 @@ export const useGameStore = create<GameState>()(
           }),
 
         matched: [],
-        matchTiles: (tile1Id, tile2Id) =>
-          set((state) => ({ matched: [...state.matched, tile1Id, tile2Id] })),
+        matchTiles: (tile1Id, tile2Id) => {
+          let isGameOver = false;
+          set((state) => {
+            const newMatched = [...state.matched, tile1Id, tile2Id];
+            isGameOver = newMatched.length === state.tiles.length;
+            return { matched: newMatched };
+          });
+          return isGameOver;
+        },
 
-        gameId: 0,
-        startNewGame: () => {
-          set((state) => ({
-            gameId: state.gameId + 1,
+        gameId: crypto.randomUUID(),
+        resetGame: () => {
+          set({
+            gameId: crypto.randomUUID(),
             timePassed: 0,
             movesCount: 0,
             tiles: generateGameTiles(PAIRS),
             checked: [],
             matched: [],
-          }));
+          });
         },
 
         cheatMode: false,

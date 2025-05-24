@@ -31,6 +31,7 @@ export function PlayerLoginForm() {
         defaultValue={playerName ?? undefined}
         placeholder="Player"
         autoFocus
+        maxLength={24}
         required
       />
       <Button type="submit">

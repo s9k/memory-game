@@ -1,11 +1,15 @@
-import { usePlayerStore } from "@/domains/player/hooks";
 import cn from "classnames";
 import { User, Clock, CircleArrowRight } from "lucide-react";
+import { usePlayerStore } from "@/domains/player/hooks";
+import { useGameStore } from "@/domains/game/hooks";
 import { TimeCounter } from "./TimeCounter";
 import styles from "./index.module.css";
-import { useGameStore } from "@/domains/game/hooks";
 
-export function GameStatePanel() {
+type Props = {
+  paused?: boolean;
+};
+
+export function GameStatePanel({ paused }: Props) {
   const playerName = usePlayerStore((state) => state.playerName);
   const movesCount = useGameStore((state) => state.movesCount);
 
@@ -18,7 +22,7 @@ export function GameStatePanel() {
       <div className={styles.item}>
         <Clock className={styles.icon} />
         <span className={styles.caption}>
-          <TimeCounter />
+          <TimeCounter paused={paused} />
         </span>
       </div>
       <div className={styles.item}>
