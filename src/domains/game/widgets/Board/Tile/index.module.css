@@ -7,8 +7,16 @@
   cursor: pointer;
   font-size: 4rem;
   transform-style: preserve-3d;
-  transition: transform .4s, outline .1s;
+  transition: transform .4s, outline .1s, background-color .1s;
   background: transparent;
+}
+
+.root[disabled] {
+  cursor: auto;
+}
+
+.root:hover:not([disabled]) {
+  background-color: color-mix(in srgb, var(--color-accent-1) 10%, transparent);
 }
 
 .icon {
@@ -29,12 +37,13 @@
   outline: 3px solid var(--color-accent-1);
 }
 
-.matched {
-  border-color: var(--color-accent-2);
-}
-
 .flipped {
   transform: rotateY(180deg);
+  border-color: color-mix(in srgb, var(--color-accent-1) 50%, transparent);
+}
+
+.matched {
+  border-color: var(--color-accent-2);
 }
 
 .side {
