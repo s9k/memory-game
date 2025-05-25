@@ -10,5 +10,7 @@ export async function fetchList(): Promise<Photo[]> {
   return response.photos.map((photo) => ({
     url: photo.src.original,
     alt: photo.alt ?? undefined,
+    aspectRatio: photo.width / photo.height,
+    averageColor: photo.avg_color,
   }));
 }
