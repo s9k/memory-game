@@ -1,12 +1,8 @@
 import { useGameStore, useGameTime } from "@/domains/game/hooks";
 import { formatDuration } from "@/utils/duration";
 
-type Props = {
-  paused?: boolean;
-};
-
-export function TimeCounter({ paused }: Props) {
-  useGameTime({ paused });
+export function TimeCounter() {
+  useGameTime();
   const time = useGameStore((state) => state.timePassed);
   return formatDuration(time);
 }

@@ -1,10 +1,3 @@
-"use client";
-
-import { GameRoot } from "@/domains/game/widgets";
-import { withPlayerLoggedIn } from "@/domains/player/hocs";
-
-function GamePage() {
-  return <GameRoot />;
+export default function GamePage() {
+  return null; // Game component is rendered in the layout
 }
-
-export default withPlayerLoggedIn(GamePage);

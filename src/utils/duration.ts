@@ -1,6 +1,8 @@
+import { UnitSeconds } from "@/constants";
+
 export function formatDuration(durationInSeconds: number): string {
-  const minutes = Math.floor(durationInSeconds / 60);
-  const seconds = durationInSeconds % 60;
+  const minutes = Math.floor(durationInSeconds / UnitSeconds.MINUTE);
+  const seconds = durationInSeconds % UnitSeconds.MINUTE;
 
   if (!Intl.DurationFormat) {
     // Fallback to a simple string representation if Intl.DurationFormat is not available

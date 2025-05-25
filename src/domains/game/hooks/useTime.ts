@@ -2,13 +2,10 @@ import { useEffect, useRef } from "react";
 import { useGameStore } from "./useStore";
 import { useGameOver } from "./useOver";
 
-type Props = {
-  paused?: boolean;
-};
-
-export function useGameTime({ paused }: Props) {
+export function useGameTime() {
   const gameOver = useGameOver();
   const gameId = useGameStore((state) => state.gameId);
+  const paused = useGameStore((state) => state.paused);
   const secondsPassed = useGameStore((state) => state.timePassed);
   const setSecondsPassed = useGameStore((state) => state.setTimePassed);
   const msPassedRef = useRef(secondsPassed);

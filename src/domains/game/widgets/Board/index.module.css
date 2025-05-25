@@ -4,6 +4,8 @@
   max-width: 48rem;
   display: grid;
   margin: 0 auto;
+  position: relative;
+  width: 100%;
 }
 
 @media (width < 40rem) {

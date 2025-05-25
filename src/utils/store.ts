@@ -13,12 +13,14 @@ export const createHydrateStoreSlice: StateCreator<HydrateStoreSlice> = (
   setHydrated: () => set({ hydrated: true }),
 });
 
-const onRehydrateStorage =
+export const onRehydrateStorage =
   <State extends HydrateStoreSlice>(state: State) =>
   () =>
     state.setHydrated(true);
 
-const partialize = <State extends HydrateStoreSlice>({
+export const removeHydrateFromPersistedState = <
+  State extends HydrateStoreSlice
+>({
   hydrated, // eslint-disable-line @typescript-eslint/no-unused-vars
   ...state
 }: State): Omit<State, "hydrated"> => state;
@@ -30,5 +32,5 @@ export const getHydratePersistOptions = <
   "onRehydrateStorage" | "partialize"
 > => ({
   onRehydrateStorage,
-  partialize,
+  partialize: removeHydrateFromPersistedState,
 });

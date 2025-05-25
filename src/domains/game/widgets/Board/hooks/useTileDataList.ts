@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { TileData } from "./Tile";
-import { useGameStore } from "../../hooks";
+import { useGameStore } from "@/domains/game/hooks";
+import { TileData } from "../Tile";
 
 export function useTileDataList() {
   const shuffled = useGameStore((state) => state.tiles);

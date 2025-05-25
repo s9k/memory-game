@@ -1,5 +1,5 @@
 import { useGameStore, useGameRecordHighscore } from "@/domains/game/hooks";
-import { TileData } from "./Tile";
+import { TileData } from "../Tile";
 
 type Props = {
   tileMap: Map<number, TileData>;

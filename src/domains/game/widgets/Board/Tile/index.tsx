@@ -1,11 +1,13 @@
 import { Shapes } from "lucide-react";
 import cn from "classnames";
+import { Photo } from "@/domains/photo/model";
+import { FrontSide } from "./FrontSide";
 import styles from "./index.module.css";
 
 export type TileData = {
   id: number;
   pairId: number;
-  url?: string;
+  photo?: Photo;
 };
 
 type Props = TileData & {
@@ -22,6 +24,7 @@ export function Tile({
   matched,
   onFlip,
   cheatMode,
+  photo,
 }: Props) {
   return (
     <button
@@ -32,7 +35,9 @@ export function Tile({
       onClick={() => onFlip?.(id)}
       disabled={matched || checked}
     >
-      <div className={cn(styles.front, styles.side)}>{pairId}</div>
+      <div className={cn(styles.front, styles.side)}>
+        <FrontSide photo={photo} pairId={pairId} />
+      </div>
       <div className={cn(styles.back, styles.side)}>
         <Shapes className={styles.icon} />
         {cheatMode && <div className={styles.hint}>{pairId}</div>}

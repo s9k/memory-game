@@ -1,14 +1,14 @@
 "use client";
 
-import { createElement, useEffect } from "react";
+import { createElement, useEffect, ComponentType } from "react";
 import { usePlayerStore } from "../hooks";
 import { redirect } from "next/navigation";
 
-export function withPlayerLoggedIn<
-  P extends Record<string, unknown>,
-  C extends React.ComponentType<P>
->(Component: C): C {
-  function ProtectedComponent(props: P) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function withPlayerLoggedIn<C extends ComponentType<any>>(
+  Component: C
+): C {
+  function ProtectedComponent(props: React.ComponentProps<C>) {
     const playerName = usePlayerStore((state) => state.playerName);
     const hydrated = usePlayerStore((state) => state.hydrated);
 

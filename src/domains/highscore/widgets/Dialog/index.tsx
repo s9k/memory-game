@@ -2,21 +2,25 @@
 
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { redirect } from "next/navigation";
+import { useGameStore } from "@/domains/game/hooks";
 import { useClose } from "./useClose";
 import { HighscoreTable } from "../Table";
 import styles from "./index.module.css";
 
-type Props = {
-  onClose: () => void;
-};
-
-export function HighscoreDialog({ onClose }: Props) {
+export function HighscoreDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const pauseGame = useGameStore((state) => state.pauseGame);
+  const continueGame = useGameStore((state) => state.continueGame);
 
   useEffect(() => {
+    pauseGame();
     dialogRef.current?.showModal();
   }, []);
-  useClose(dialogRef, onClose);
+  useClose(dialogRef, () => {
+    continueGame();
+    redirect("/game");
+  });
 
   return (
     <dialog ref={dialogRef} className={styles.root}>

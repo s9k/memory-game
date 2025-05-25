@@ -47,14 +47,13 @@
 
 .side {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  inset: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
 .front {

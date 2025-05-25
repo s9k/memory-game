@@ -1,12 +1,18 @@
 "use client";
 
+import { ReactNode, Suspense, use } from "react";
 import { useGameStore } from "@/domains/game/hooks";
+import { Photo } from "@/domains/photo/model";
 import { Tile } from "./Tile";
-import { useTileDataList } from "./useTileDataList";
-import { useFlipTile } from "./useFlipTile";
+import { useFlipTile, useTileDataList } from "./hooks";
 import styles from "./index.module.css";
 
-export function GameBoard() {
+type RawProps = {
+  photos?: Photo[];
+  children?: ReactNode;
+};
+
+function ContentRaw({ photos, children }: RawProps) {
   const list = useTileDataList();
   const checkedIds = useGameStore((state) => state.checked);
   const matchedIds = useGameStore((state) => state.matched);
@@ -23,8 +29,29 @@ export function GameBoard() {
           matched={matchedIds.includes(data.id)}
           onFlip={flipTile}
           cheatMode={cheatMode}
+          photo={photos?.[data.pairId]}
         />
       ))}
+      {children}
     </div>
+  );
+}
+
+type Props = {
+  photosPromise: Promise<Photo[]>;
+  children?: ReactNode;
+};
+
+function ContentLoading({ photosPromise, children }: Props) {
+  const photos = use(photosPromise);
+
+  return <ContentRaw photos={photos}>{children}</ContentRaw>;
+}
+
+export function GameBoard({ photosPromise, children }: Props) {
+  return (
+    <Suspense fallback={<ContentRaw />}>
+      <ContentLoading photosPromise={photosPromise}>{children}</ContentLoading>
+    </Suspense>
   );
 }

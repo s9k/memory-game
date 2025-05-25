@@ -5,11 +5,7 @@ import { useGameStore } from "@/domains/game/hooks";
 import { TimeCounter } from "./TimeCounter";
 import styles from "./index.module.css";
 
-type Props = {
-  paused?: boolean;
-};
-
-export function GameStatePanel({ paused }: Props) {
+export function GameStatePanel() {
   const playerName = usePlayerStore((state) => state.playerName);
   const movesCount = useGameStore((state) => state.movesCount);
 
@@ -22,7 +18,7 @@ export function GameStatePanel({ paused }: Props) {
       <div className={styles.item}>
         <Clock className={styles.icon} />
         <span className={styles.caption}>
-          <TimeCounter paused={paused} />
+          <TimeCounter />
         </span>
       </div>
       <div className={styles.item}>

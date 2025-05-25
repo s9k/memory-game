@@ -2,17 +2,22 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import {
   createHydrateStoreSlice,
-  getHydratePersistOptions,
+  onRehydrateStorage,
   HydrateStoreSlice,
+  removeHydrateFromPersistedState,
 } from "@/utils/store";
 import { GameTile } from "@/domains/game/model";
 import { generateGameTiles } from "@/domains/game/utils";
+import { PAIRS_COUNT } from "@/constants";
 
 type GameTileId = number;
 
 type GameState = HydrateStoreSlice & {
   gameId: string;
+  paused: boolean;
   resetGame: () => void;
+  pauseGame: () => void;
+  continueGame: () => void;
 
   /** Time passed in seconds since the game started. */
   timePassed: number;
@@ -34,8 +39,6 @@ type GameState = HydrateStoreSlice & {
   toggleCheatMode: () => void;
 };
 
-const PAIRS = 6;
-
 export const useGameStore = create<GameState>()(
   persist(
     (set, get, api) => {
@@ -46,7 +49,7 @@ export const useGameStore = create<GameState>()(
         movesCount: 0,
         addMove: () => set((state) => ({ movesCount: state.movesCount + 1 })),
 
-        tiles: generateGameTiles(PAIRS),
+        tiles: generateGameTiles(PAIRS_COUNT),
         setTiles: (tiles) => set({ tiles }),
 
         checked: [],
@@ -73,16 +76,19 @@ export const useGameStore = create<GameState>()(
         },
 
         gameId: crypto.randomUUID(),
+        paused: false,
         resetGame: () => {
           set({
             gameId: crypto.randomUUID(),
             timePassed: 0,
             movesCount: 0,
-            tiles: generateGameTiles(PAIRS),
+            tiles: generateGameTiles(PAIRS_COUNT),
             checked: [],
             matched: [],
           });
         },
+        pauseGame: () => set({ paused: true }),
+        continueGame: () => set({ paused: false }),
 
         cheatMode: false,
         toggleCheatMode: () =>
@@ -93,7 +99,10 @@ export const useGameStore = create<GameState>()(
     },
     {
       name: "game",
-      ...getHydratePersistOptions(),
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      partialize: ({ paused, ...state }) =>
+        removeHydrateFromPersistedState(state),
+      onRehydrateStorage,
     }
   )
 );
