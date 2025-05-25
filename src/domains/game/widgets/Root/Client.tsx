@@ -1,6 +1,8 @@
 "use client";
 
 import { RefreshCcw, Medal, LogOut } from "lucide-react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 import {
   GameActionButton,
@@ -23,8 +25,13 @@ type Props = {
 export function GameRootClient({ photosPromise }: Props) {
   const logOut = usePlayerStore((state) => state.logOut);
   const resetGame = useGameStore((state) => state.resetGame);
+  const router = useRouter();
 
   useGameKeyboard();
+
+  useEffect(() => {
+    router.prefetch("/game/scores");
+  }, [router]);
 
   const handleLogOut = () => {
     resetGame();

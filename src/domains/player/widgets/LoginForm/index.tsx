@@ -1,13 +1,19 @@
 "use client";
 
 import { Coffee } from "lucide-react";
-import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { redirect, useRouter } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
 import { Button, Input } from "@/components";
 import styles from "./index.module.css";
 
 export function PlayerLoginForm() {
   const { hydrated, playerName, logIn } = usePlayerStore((state) => state);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch("/game");
+  }, [router]);
 
   const submitAction = async (formData: FormData) => {
     const name = formData.get("name") as string;
