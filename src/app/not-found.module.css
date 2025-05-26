@@ -9,6 +9,6 @@
 
 .title {
   font-size: 4rem;
-  font-weight: normal;
+  font-weight: 400;
   color: var(--color-accent-2);
 }

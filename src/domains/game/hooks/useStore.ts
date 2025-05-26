@@ -19,7 +19,7 @@ import {
   createGameStoreTimeSlice,
   createGameStorePauseSlice,
   GameStorePauseSlice,
-} from "@/domains/store";
+} from "@/domains/game/store";
 
 type GameState = GameStoreMainSlice &
   GameStoreCheatSlice &

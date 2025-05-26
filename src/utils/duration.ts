@@ -7,8 +7,8 @@ export function formatDuration(durationInSeconds: number): string {
   if (!Intl.DurationFormat) {
     // Fallback to a simple string representation if Intl.DurationFormat is not available
     return [
-      minutes ? `${minutes}m` : "",
-      seconds || !durationInSeconds ? `${seconds}s` : "",
+      minutes > 0 ? `${minutes}m` : "",
+      seconds > 0 || durationInSeconds === 0 ? `${seconds}s` : "",
     ].join(" ");
   }
 

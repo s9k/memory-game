@@ -1,9 +1,9 @@
 import { StateCreator } from "zustand";
+import { generateGameTiles } from "@/domains/game/utils";
+import { PAIRS_COUNT } from "@/constants";
 import { GameStoreTimeSlice } from "./time";
 import { GameStoreMovesSlice } from "./moves";
 import { GameStoreTilesSlice } from "./tiles";
-import { generateGameTiles } from "../game/utils";
-import { PAIRS_COUNT } from "@/constants";
 
 export type GameStoreMainSlice = {
   gameId: string;

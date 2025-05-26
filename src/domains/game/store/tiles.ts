@@ -1,7 +1,11 @@
 import { StateCreator } from "zustand";
 import { PAIRS_COUNT } from "@/constants";
-import { GameTile } from "@/domains/game/model";
 import { generateGameTiles } from "@/domains/game/utils";
+
+type GameTile = {
+  id: number;
+  pairId: number;
+};
 
 type GameTileId = number;
 

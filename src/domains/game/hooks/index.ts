@@ -1,5 +1,3 @@
-"use client";
-
 export * from "./useKeyboard";
 export * from "./useOver";
 export * from "./useRecordHighscore";

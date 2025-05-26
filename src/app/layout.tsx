@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-import { PageHeader } from "@/widgets/PageHeader";
-import { PageContainer } from "@/widgets/PageContainer";
+import { PageHeader, PageContainer } from "@/widgets";
 import { TITLE } from "@/constants";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk-sans",
   subsets: ["latin"],
-  weight: ["300"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
