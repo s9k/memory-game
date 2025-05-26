@@ -6,9 +6,11 @@ import { redirect, useRouter } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
 import { Button, Input } from "@/components";
 import styles from "./index.module.css";
+import { useGameStore } from "@/domains/game/hooks";
 
 export function PlayerLoginForm() {
   const { hydrated, playerName, logIn } = usePlayerStore((state) => state);
+  const resetGame = useGameStore((state) => state.resetGame);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,6 +19,10 @@ export function PlayerLoginForm() {
 
   const submitAction = async (formData: FormData) => {
     const name = formData.get("name") as string;
+
+    if (name !== playerName) {
+      resetGame();
+    }
     logIn(name);
     redirect("/game");
   };
