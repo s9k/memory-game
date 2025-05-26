@@ -7,6 +7,10 @@
   line-height: 1rem;
   background: var(--bg-color);
   border: 1px solid var(--bg-color);
+  color: var(--color-background-hard);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
 }
 
 .root:hover,

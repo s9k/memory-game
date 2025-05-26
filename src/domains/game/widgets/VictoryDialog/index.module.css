@@ -15,6 +15,7 @@
   font-weight: 700;
   text-align: center;
   gap: 0.25rem;
+  padding: 1rem;
 }
 
 .root:focus-visible {
@@ -39,5 +40,12 @@
 
 .actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (width < 40rem) {
+  .actions {
+    flex-direction: column;
+  }
 }

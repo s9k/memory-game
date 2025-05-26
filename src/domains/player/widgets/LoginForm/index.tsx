@@ -42,7 +42,10 @@ export function PlayerLoginForm() {
       />
       <Button type="submit">
         <span className={styles.buttonInner}>
-          Start the game <Coffee />
+          Start the game{" "}
+          <span className={styles.icon}>
+            <Coffee />
+          </span>
         </span>
       </Button>
     </form>

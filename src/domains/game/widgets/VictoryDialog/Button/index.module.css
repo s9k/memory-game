@@ -5,10 +5,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  background-color: var(--color-background-hard);
 }
 
 .root:hover,
@@ -23,6 +25,7 @@
 .icon {
   width: 1.25rem;
   height: 1.25rem;
+  display: flex;
 }
 
 .icon svg {

@@ -5,6 +5,8 @@
   border: 1px solid color-mix(in srgb, var(--color-accent-1) 50%, transparent);
   background: transparent;
   line-height: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .root:hover,
