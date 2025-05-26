@@ -25,8 +25,8 @@ export function FrontSide({ pairId, photo }: Props) {
 
   return (
     <Image
-      width={Math.max(MIN_SIDE, MIN_SIDE * aspectRatio)}
-      height={Math.max(MIN_SIDE, MIN_SIDE / aspectRatio)}
+      width={Math.max(MIN_SIDE, Math.round(MIN_SIDE * aspectRatio))}
+      height={Math.max(MIN_SIDE, Math.round(MIN_SIDE / aspectRatio))}
       style={{ objectFit: "cover" }}
       src={url}
       alt={alt}
