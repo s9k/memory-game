@@ -1,12 +1,11 @@
 "use client";
 
-import { Coffee } from "lucide-react";
 import { useEffect } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
+import { useGameStore } from "@/domains/game/hooks";
 import { Button, Input } from "@/components";
 import styles from "./index.module.css";
-import { useGameStore } from "@/domains/game/hooks";
 
 export function PlayerLoginForm() {
   const { hydrated, playerName, logIn } = usePlayerStore((state) => state);
@@ -47,12 +46,7 @@ export function PlayerLoginForm() {
         required
       />
       <Button type="submit">
-        <span className={styles.buttonInner}>
-          Start the game{" "}
-          <span className={styles.icon}>
-            <Coffee />
-          </span>
-        </span>
+        <span className={styles.buttonInner}>Start the game</span>
       </Button>
     </form>
   );
