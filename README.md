@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Memorizer
+
+**Demo:** [https://memory-game-eta-puce.vercel.app/](https://memory-game-eta-puce.vercel.app/)
+
+**Memorizer** is a memory game built with **Next.js** and **TypeScript**. It challenges users to memorize image positions and test their memory skills.
+Created for educational purposes.
+
+### Features
+
+- Integration with the [Pexels API](https://www.pexels.com/api/) to fetch curated images
+- Persistent player and game state using browser storage
+- Mobile-friendly responsive design
+- High score tracking with local storage saving
 
 ## Getting Started
 
-First, run the development server:
+1. Get a Pexels API key:
+
+   [https://www.pexels.com/api/](https://www.pexels.com/api/)
+
+2. Copy the environment template:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Set your Pexels API key in the `.env` file:
+
+   ```env
+   PEXELS_KEY=your_api_key_here
+   ```
+
+4. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+5. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Build and Deploy
+
+To build the project for production:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To start the production server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can deploy the project using platforms like **Vercel**.
 
-## Learn More
+## Possible Improvements
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Save more accurate game duration in high scores
+- Store game state using **IndexedDB** for better scalability and performance
+- Limit the number of shown high scores
+- Add more animations and visual effects
