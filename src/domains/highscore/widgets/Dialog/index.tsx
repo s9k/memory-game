@@ -8,17 +8,19 @@ import { useClose } from "./useClose";
 import { HighscoreTable } from "../Table";
 import styles from "./index.module.css";
 
+const PAUSE_TRIGGER = "highscore-dialog-opened";
+
 export function HighscoreDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pauseGame = useGameStore((state) => state.pauseGame);
-  const continueGame = useGameStore((state) => state.continueGame);
+  const unpauseGame = useGameStore((state) => state.unpauseGame);
 
   useEffect(() => {
-    pauseGame();
+    pauseGame(PAUSE_TRIGGER);
     dialogRef.current?.showModal();
   }, []);
   useClose(dialogRef, () => {
-    continueGame();
+    unpauseGame(PAUSE_TRIGGER);
     redirect("/game");
   });
 

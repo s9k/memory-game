@@ -14,10 +14,10 @@ type GameTileId = number;
 
 type GameState = HydrateStoreSlice & {
   gameId: string;
-  paused: boolean;
   resetGame: () => void;
-  pauseGame: () => void;
-  continueGame: () => void;
+  pauseTriggers: Set<string>;
+  pauseGame: (pauseTrigger: string) => void;
+  unpauseGame: (pauseTrigger: string) => void;
 
   /** Time passed in seconds since the game started. */
   timePassed: number;
@@ -76,7 +76,7 @@ export const useGameStore = create<GameState>()(
         },
 
         gameId: crypto.randomUUID(),
-        paused: false,
+        pauseTriggers: new Set(),
         resetGame: () => {
           set({
             gameId: crypto.randomUUID(),
@@ -87,8 +87,20 @@ export const useGameStore = create<GameState>()(
             matched: [],
           });
         },
-        pauseGame: () => set({ paused: true }),
-        continueGame: () => set({ paused: false }),
+        pauseGame: (pauseTrigger) =>
+          set((state) => {
+            const pauseTriggers = new Set(state.pauseTriggers);
+            pauseTriggers.add(pauseTrigger);
+
+            return { pauseTriggers };
+          }),
+        unpauseGame: (pauseTrigger) =>
+          set((state) => {
+            const pauseTriggers = new Set(state.pauseTriggers);
+            pauseTriggers.delete(pauseTrigger);
+
+            return { pauseTriggers };
+          }),
 
         cheatMode: false,
         toggleCheatMode: () =>
@@ -100,7 +112,7 @@ export const useGameStore = create<GameState>()(
     {
       name: "game",
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      partialize: ({ paused, ...state }) =>
+      partialize: ({ pauseTriggers, ...state }) =>
         removeHydrateFromPersistedState(state),
       onRehydrateStorage,
     }
