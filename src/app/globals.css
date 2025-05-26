@@ -4,6 +4,10 @@
   --color-main: #ffffff;
   --color-accent-1: #3fc4ff;
   --color-accent-2: #e53afe;
+
+  --page-header-vartical-padding: 1rem;
+  --page-header-text-height: 2rem;
+  --page-header-height: calc(var(--page-header-text-height) + var(--page-header-vartical-padding) * 2);
 }
 
 html {
