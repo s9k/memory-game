@@ -1,10 +1,18 @@
+:root {
+  --page-header-vartical-padding: 1rem;
+  --page-header-text-height: 2rem;
+  --page-header-height: calc(var(--page-header-text-height) + var(--page-header-vartical-padding) * 2);
+}
+
 .root {
   text-transform: uppercase;
   text-align: center;
-  padding: 1rem 0;
+  padding: var(--page-header-vartical-padding) 0;
   width: min-content;
   margin: 0 auto;
   font-weight: normal;
+  line-height: var(--page-header-text-height);
+  height: var(--page-header-height);
 }
 
 @supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
@@ -17,6 +25,6 @@
 
 @media (width < 40rem) {
   .root {
-    padding: 0.25rem;
+    --page-header-vartical-padding: 0.25rem;
   }
 }

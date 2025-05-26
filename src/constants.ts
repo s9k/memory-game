@@ -1,3 +1,5 @@
+export const TITLE = "Memorizer";
+
 export const PAIRS_COUNT = 6;
 
 export enum UnitSeconds {

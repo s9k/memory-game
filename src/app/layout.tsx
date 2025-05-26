@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-import { PageHeader } from "@/components/PageHeader";
-import { PageContainer } from "@/components/PageContainer";
+import { PageHeader } from "@/widgets/PageHeader";
+import { PageContainer } from "@/widgets/PageContainer";
+import { TITLE } from "@/constants";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -11,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Memorizer",
+  title: TITLE,
   description: "Memory game. Match all photos in pairs as fast as possible.",
 };
 
