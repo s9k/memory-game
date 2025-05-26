@@ -1,14 +1,33 @@
+"use client";
+
 import cn from "classnames";
 import { useHighscoreStore } from "@/domains/highscore/hooks";
 import { formatDuration } from "@/utils/duration";
 import styles from "./index.module.css";
 import { useGameStore } from "@/domains/game/hooks";
 import { usePlayerStore } from "@/domains/player/hooks";
+import { useEffect, useRef } from "react";
 
 export function HighscoreTable() {
+  const bodyRef = useRef<HTMLTableSectionElement>(null);
   const list = useHighscoreStore((state) => state.list);
   const gameId = useGameStore((state) => state.gameId);
   const currentPlayerName = usePlayerStore((state) => state.playerName);
+
+  // Scroll to the highlighted row
+  useEffect(() => {
+    if (!bodyRef.current) return;
+
+    const highlightedRow = bodyRef.current.querySelector(
+      `[data-id="${gameId}"]`
+    );
+    if (!highlightedRow) return;
+
+    highlightedRow.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, []);
 
   if (!list.length) {
     return <div className={styles.empty}>There are no records yet</div>;
@@ -24,10 +43,11 @@ export function HighscoreTable() {
           <th className={cn(styles.headCell, styles.timePassed)}>Time</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody ref={bodyRef}>
         {list.map(({ playerName, movesCount, timePassed, id }, index) => (
           <tr
             key={index}
+            data-id={id}
             className={cn(styles.row, {
               [styles.highlighted]: gameId === id,
             })}
