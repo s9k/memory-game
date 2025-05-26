@@ -1,5 +1,7 @@
 import { useGameStore } from "./useStore";
 
 export function useGameOver() {
-  return useGameStore((state) => state.matched.length === state.tiles.length);
+  return useGameStore(
+    (state) => state.matchedTiles.length === state.tiles.length
+  );
 }

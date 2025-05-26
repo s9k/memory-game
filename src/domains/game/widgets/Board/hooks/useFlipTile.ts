@@ -6,7 +6,7 @@ type Props = {
 };
 
 export function useFlipTile({ tileMap }: Props) {
-  const checkedIds = useGameStore((state) => state.checked);
+  const checkedIds = useGameStore((state) => state.checkedTiles);
   const checkTile = useGameStore((state) => state.checkTile);
   const matchTiles = useGameStore((state) => state.matchTiles);
   const addMove = useGameStore((state) => state.addMove);

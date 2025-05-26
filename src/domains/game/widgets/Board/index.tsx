@@ -14,8 +14,8 @@ type RawProps = {
 
 function ContentRaw({ photos, children }: RawProps) {
   const list = useTileDataList();
-  const checkedIds = useGameStore((state) => state.checked);
-  const matchedIds = useGameStore((state) => state.matched);
+  const checkedIds = useGameStore((state) => state.checkedTiles);
+  const matchedIds = useGameStore((state) => state.matchedTiles);
   const cheatMode = useGameStore((state) => state.cheatMode);
   const flipTile = useFlipTile({ tileMap: list.byId });
 
