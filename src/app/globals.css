@@ -10,6 +10,12 @@
   --page-header-height: calc(var(--page-header-text-height) + var(--page-header-vartical-padding) * 2);
 }
 
+@media (width < 40rem) {
+  :root {
+    --page-header-vartical-padding: 0.25rem;
+  }
+}
+
 html {
   color-scheme: dark;
 }

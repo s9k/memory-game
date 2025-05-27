@@ -19,6 +19,6 @@
 
 @media (width < 40rem) {
   .root {
-    --page-header-vartical-padding: 0.25rem;
+    font-size: 1.875rem;
   }
 }
