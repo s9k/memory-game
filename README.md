@@ -14,7 +14,7 @@
 - [Technologies Used](#technologies-used)
 - [Possible Improvements](#possible-improvements)
 
-### Features
+## Features
 
 - Integration with the [Pexels API](https://www.pexels.com/api/) to fetch curated images
 - Persistent player and game state using browser storage
