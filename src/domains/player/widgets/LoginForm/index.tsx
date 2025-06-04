@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
 import { useGameStore } from "@/domains/game/hooks";
 import { Button, Input } from "@/components";
@@ -23,7 +23,7 @@ export function PlayerLoginForm() {
       resetGame();
     }
     logIn(name);
-    redirect("/game");
+    router.push("/game");
   };
 
   if (!hydrated) {

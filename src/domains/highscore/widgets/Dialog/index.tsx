@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useGameStore } from "@/domains/game/hooks";
 import { ModalDialog } from "@/components";
 import { HighscoreTable } from "../Table";
@@ -12,6 +12,7 @@ export function HighscoreDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pauseGame = useGameStore((state) => state.pauseGame);
   const unpauseGame = useGameStore((state) => state.unpauseGame);
+  const router = useRouter();
 
   useEffect(() => {
     pauseGame(PAUSE_TRIGGER);
@@ -19,7 +20,7 @@ export function HighscoreDialog() {
   }, []);
   const handleClose = () => {
     unpauseGame(PAUSE_TRIGGER);
-    redirect("/game");
+    router.push("/game");
   };
 
   return (

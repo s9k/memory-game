@@ -3,7 +3,6 @@
 import { RefreshCcw, Medal, LogOut } from "lucide-react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
 import {
   GameActionButton,
   GameActions,
@@ -52,7 +51,7 @@ export function GameRootClient({ photosPromise }: Props) {
           <GameActionButton
             icon={<Medal />}
             label="Scoreboard"
-            onClick={() => redirect("/game/scores")}
+            onClick={() => router.push("/game/scores")}
           />
           <GameActionButton
             icon={<LogOut />}

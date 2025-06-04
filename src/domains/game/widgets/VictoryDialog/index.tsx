@@ -1,5 +1,7 @@
+"use client";
+
 import { Medal, RefreshCcw, Trophy } from "lucide-react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import cn from "classnames";
 import { useGameOver, useGameStore } from "@/domains/game/hooks";
 import { formatDuration } from "@/utils/duration";
@@ -11,6 +13,7 @@ export function GameVictoryDialog() {
   const secondsPassed = useGameStore((state) => state.timePassed);
   const movesCount = useGameStore((state) => state.movesCount);
   const resetGame = useGameStore((state) => state.resetGame);
+  const router = useRouter();
 
   return (
     <dialog
@@ -32,7 +35,7 @@ export function GameVictoryDialog() {
         <Button
           icon={<Medal />}
           label="Scoreboard"
-          onClick={() => redirect("/game/scores")}
+          onClick={() => router.push("/game/scores")}
         />
       </div>
     </dialog>
