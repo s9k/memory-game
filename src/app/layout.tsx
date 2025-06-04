@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PageHeader, PageContainer } from "@/widgets";
 import { TITLE } from "@/constants";
 import "./globals.css";
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable}`}>
         <PageHeader />
         <PageContainer>{children}</PageContainer>
+        <SpeedInsights />
       </body>
     </html>
   );
