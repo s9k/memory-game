@@ -3,13 +3,11 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { usePlayerStore } from "@/domains/player/hooks";
-import { useGameStore } from "@/domains/game/hooks";
 import { Button, Input } from "@/components";
 import styles from "./index.module.css";
 
 export function PlayerLoginForm() {
-  const { hydrated, playerName, logIn } = usePlayerStore((state) => state);
-  const resetGame = useGameStore((state) => state.resetGame);
+  const { logIn } = usePlayerStore((state) => state);
   const router = useRouter();
 
   useEffect(() => {
@@ -18,17 +16,8 @@ export function PlayerLoginForm() {
 
   const submitAction = async (formData: FormData) => {
     const name = formData.get("name") as string;
-
-    if (name !== playerName) {
-      resetGame();
-    }
     logIn(name);
-    router.push("/game");
   };
-
-  if (!hydrated) {
-    return null;
-  }
 
   return (
     <form className={styles.root} action={submitAction}>
@@ -39,7 +28,6 @@ export function PlayerLoginForm() {
         id="name"
         name="name"
         type="text"
-        defaultValue={playerName ?? undefined}
         placeholder="Player"
         autoFocus
         maxLength={24}
