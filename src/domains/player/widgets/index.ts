@@ -1,3 +1,2 @@
-export * from "./LoggedInGuard";
-export * from "./LoggedOutGuard";
+export * from "./LoggedGuard";
 export * from "./LoginForm";

@@ -1,12 +1,9 @@
-import {
-  PlayerLoggedOutGuard,
-  PlayerLoginForm,
-} from "@/domains/player/widgets";
+import { PlayerLoggedGuard, PlayerLoginForm } from "@/domains/player/widgets";
 
 export default function LoginPage() {
   return (
-    <PlayerLoggedOutGuard>
+    <PlayerLoggedGuard mode="logged-out">
       <PlayerLoginForm />
-    </PlayerLoggedOutGuard>
+    </PlayerLoggedGuard>
   );
 }

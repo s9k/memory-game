@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { PlayerLoggedInGuard } from "@/domains/player/widgets";
+import { PlayerLoggedGuard } from "@/domains/player/widgets";
 import { GameRoot } from "@/domains/game/widgets";
 
 type Props = {
@@ -8,9 +8,9 @@ type Props = {
 
 export default async function GameLayout({ children }: Props) {
   return (
-    <PlayerLoggedInGuard>
+    <PlayerLoggedGuard mode="logged-in">
       <GameRoot />
       {children}
-    </PlayerLoggedInGuard>
+    </PlayerLoggedGuard>
   );
 }
