@@ -11,7 +11,6 @@ type GameTileId = number;
 
 export type GameStoreTilesSlice = {
   tiles: GameTile[];
-  setTiles: (tiles: GameTile[]) => void;
 
   checkedTiles: GameTileId[];
   checkTile: (tileId: GameTileId) => void;
@@ -24,7 +23,6 @@ export const createGameStoreTilesSlice: StateCreator<GameStoreTilesSlice> = (
   set
 ) => ({
   tiles: generateGameTiles(PAIRS_COUNT),
-  setTiles: (tiles) => set({ tiles }),
 
   checkedTiles: [],
   checkTile: (tileId) =>
